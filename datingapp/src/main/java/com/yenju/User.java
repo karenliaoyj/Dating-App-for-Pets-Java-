@@ -1,3 +1,5 @@
+package com.yenju;
+
 public class User{
     String name;
     int id;
@@ -11,36 +13,11 @@ public class User{
 
 }
 
-public class LikeAmount{
-    int ID;
-    boolean likeOrDislike;
-    int userId1;
-    int userId2;    
-}
+
 
 //to do : matching method
 
-public class notification{ // one particular notification
-    String text;
-    int ID;
-    int senterUserId;
-    int receiverUserId;
 
-}
 
-public class message{
-    int ID;
-    int senterUserId;
-    int receiverUserId;
-    Sting message;
-
-}
-
-public class match{ // to do: match algorithm
-    int ID;
-    int userId1;
-    int userId2;
-
-}
 
 
