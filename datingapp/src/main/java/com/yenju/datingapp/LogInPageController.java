@@ -6,14 +6,15 @@ import javafx.fxml.Initializable;
 
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogInPageController implements Initializable {
-
+public class LogInPageController  extends SceneController {
+    private SceneHelper.MessageContainer messageContainer;
 
     @FXML
     private Button button_login;
@@ -32,16 +33,38 @@ public class LogInPageController implements Initializable {
 
             @Override
             public void handle(ActionEvent event){
-                DBConnection.logInUser(event, tf_username.getText(), tf_password.getText());
+
+                String userName = tf_username.getText();
+                String passWord = tf_password.getText();
+                boolean logInSuccess;
+                logInSuccess = DBConnection.logInUser(event, userName, passWord);
+                if(logInSuccess){
+                    SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
+                    messageContainer.title = "Welcome";
+                    messageContainer.username = userName;
+                    SceneHelper.changeScene(event, "loggedIn.fxml", messageContainer);
+                }else{
+                    System.out.println("Password did not match");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("The provided credentials are incorrect");
+                    alert.show();
+                }
             }
         });
 
         button_signup.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-                DBConnection.changeScene(event, "com/yenju/datingapp/SignUp.fxml", null,null);
+                SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
+                messageContainer.title = null;
+                messageContainer.username = null;
+                SceneHelper.changeScene(event, "SignUp.fxml", messageContainer);
             }
         });
+    }
+
+    public void setMessage(SceneHelper.MessageContainer messageContainer) {
+        this.messageContainer = messageContainer;
     }
 
 }

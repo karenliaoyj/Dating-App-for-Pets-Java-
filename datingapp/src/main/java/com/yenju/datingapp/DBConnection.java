@@ -11,44 +11,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 public class DBConnection {
-
-    public static void changeScene(ActionEvent event, String fxmlFile , String title, String username){
-        Parent root = null;
-
-        if(username != null ){
-            try {
-                FXMLLoader loader = new FXMLLoader(DBConnection.class.getResource(fxmlFile));
-                root = loader.load();
-                LoggedInController loggedInController = loader.getController();
-                loggedInController.setUserInformation(username);
-            }catch(IOException e){
-                e.printStackTrace();;
-            }
-        }else{
-            try{
-                root = FXMLLoader.load(DBConnection.class.getResource(fxmlFile));
-            }catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root,  600, 400));
-        stage.show();
-    }
     // to do : photo upload
-    public static void sighUpUser(ActionEvent event, String username, String password, String gender){
+    public static boolean sighUpUser(ActionEvent event, String username, String password, String gender){
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet resultSet = null;
 
         try{
-            connection = DriverManager.getConnection(" jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
-            psCheckUserExist = connection.prepareStatement("SELECT * FROM user username = ?" );
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            psCheckUserExist = connection.prepareStatement("SELECT * FROM user WHERE username = ?" );
             psCheckUserExist.setString( 1, username);
             resultSet = psCheckUserExist.executeQuery();
 
@@ -57,17 +35,16 @@ public class DBConnection {
                 Alert alert =  new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You cannot use this username");
                 alert.show();
-            }else{
-                psInsert = connection.prepareStatement("INSERT INTO user(username,password,gender");
-                psInsert.setString(1,username);
-                psInsert.setString(2,password);
-                psInsert.setString(3,gender);
+            }else {
+                psInsert = connection.prepareStatement("INSERT INTO user (username, password, gender) VALUES (?, ?, ?)");
+                psInsert.setString(1, username);
+                psInsert.setString(2, password);
+                psInsert.setString(3, gender);
                 psInsert.executeUpdate();
-
-                changeScene(event, "logIn.fxml", "Log In!", username);
+                return true;
             }
 
-        }catch (SQLException e ){
+        }catch (Exception e ) {
             e.printStackTrace();
 
         }finally {
@@ -92,17 +69,20 @@ public class DBConnection {
                     e.printStackTrace();
                 }
             }
-            if(connection != null){
-                try{
+            if(connection != null) {
+                try {
                     connection.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
+
+
         }
+        return false;
     }
 
-    public static void logInUser(ActionEvent event, String username, String password){
+    public static boolean logInUser(ActionEvent event, String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement =null;
         ResultSet resultset = null;
@@ -122,12 +102,10 @@ public class DBConnection {
                     String retrivedPassword = resultset.getString("password");
                     String retrivesGender = resultset.getString("gender");
                     if(retrivedPassword.equals(password)){
-                        changeScene(event, "logIn.fxml", "Welcome", username);
+                        return true;
+
                     }else{
-                        System.out.println("Password did not match");
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("The provided credentials are incorrect");
-                        alert.show();
+                        return false;
 
                     }
                 }
@@ -158,6 +136,7 @@ public class DBConnection {
                 }
             }
         }
+        return false;
     }
 
 }

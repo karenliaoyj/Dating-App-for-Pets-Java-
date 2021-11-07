@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact name="fxml">
     <output-path>$PROJECT_DIR$/target/classes/com/yenju/datingapp</output-path>
-    <root id="root">
-      <element id="dir-copy" path="$PROJECT_DIR$/src/main/java/com/yenju/datingapp" />
-    </root>
+    <root id="root" />
   </artifact>
 </component>

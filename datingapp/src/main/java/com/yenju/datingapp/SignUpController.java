@@ -2,23 +2,24 @@ package com.yenju.datingapp;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends SceneController {
+    private SceneHelper.MessageContainer messageContainer;
 
     @FXML
     private Button button_signup;
-    @FXML
-    private Button button_login;
 
     @FXML
     private RadioButton rb_male;
@@ -28,6 +29,8 @@ public class SignUpController implements Initializable {
     private TextField tf_username;
     @FXML
     private TextField tf_password;
+    @FXML
+    private Label lb_errorms;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -41,10 +44,22 @@ public class SignUpController implements Initializable {
         button_signup.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
+                boolean signup;
+                String userName = tf_username.getText();
+                String password = tf_password.getText();
                 String toggleName = ((RadioButton) toggleGroup.getSelectedToggle()).getText(); //get male or female
 
-                if(!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()){
-                    DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),toggleName);
+                if(!userName.trim().isEmpty() && !password.trim().isEmpty()){
+                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),toggleName);
+                    if(signup ){
+                        SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
+                        messageContainer.title = "Log In!";
+                        messageContainer.username = userName;
+                        SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
+                    }else{
+                        lb_errorms.setText("Please try again!");
+                    }
+
                 }else{
                     System.out.println("Please fill in all information");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -53,12 +68,10 @@ public class SignUpController implements Initializable {
                 }
             }
         });
-
-        button_login.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                DBConnection.changeScene(event, "Login.fxml",null,null);
-            }
-        });
     }
+
+    public void setMessage(SceneHelper.MessageContainer messageContainer) {
+        this.messageContainer = messageContainer;
+    }
+
 }

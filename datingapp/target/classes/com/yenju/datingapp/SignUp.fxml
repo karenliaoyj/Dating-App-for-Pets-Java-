@@ -10,19 +10,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.SignUpController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="255.0" style="-fx-background-color: #E9967A#E9967A;">
          <children>
             <ImageView fitHeight="193.0" fitWidth="198.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Downloads/love-animals.jpg" />
+                  <Image url="@love-animals.jpg" />
                </image>
             </ImageView>
             <Label layoutX="33.0" layoutY="233.0" prefHeight="29.0" prefWidth="164.0" text="Sign Up Now !">
                <font>
                   <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lb_errorms" layoutX="37.0" layoutY="309.0" prefHeight="29.0" prefWidth="134.0" textFill="#252424">
+               <font>
+                  <Font size="22.0" />
                </font>
             </Label>
          </children>
@@ -39,8 +43,8 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField layoutX="127.0" layoutY="28.0" prefHeight="46.0" prefWidth="187.0" />
-            <TextField layoutX="126.0" layoutY="88.0" prefHeight="40.0" prefWidth="187.0" />
+            <TextField fx:id="tf_username" layoutX="127.0" layoutY="28.0" prefHeight="46.0" prefWidth="187.0" />
+            <TextField fx:id="tf_password" layoutX="126.0" layoutY="88.0" prefHeight="40.0" prefWidth="187.0" />
             <Label layoutX="15.0" layoutY="180.0" prefHeight="40.0" prefWidth="108.0" text="Short Intro" textFill="#d76a72">
                <font>
                   <Font size="22.0" />
@@ -52,23 +56,23 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <RadioButton layoutX="123.0" layoutY="144.0" mnemonicParsing="false" text="Male " fx:id="rb_male">
+            <RadioButton fx:id="rb_male" layoutX="123.0" layoutY="144.0" mnemonicParsing="false" text="Male ">
                <font>
                   <Font size="19.0" />
                </font>
             </RadioButton>
-            <RadioButton layoutX="221.0" layoutY="144.0" mnemonicParsing="false" text="Female">
+            <RadioButton fx:id="rb_female" layoutX="221.0" layoutY="144.0" mnemonicParsing="false" text="Female">
                <font>
                   <Font size="19.0" />
                </font>
             </RadioButton>
-            <Label layoutX="15.0" layoutY="304.0" prefHeight="40.0" prefWidth="108.0" text="Photo" textFill="#d76a72">
+            <Label layoutX="15.0" layoutY="293.0" prefHeight="40.0" prefWidth="108.0" text="Photo" textFill="#d76a72">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <ImageView fitHeight="29.0" fitWidth="193.0" layoutX="126.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="115.0" layoutY="352.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" text="Sign up !" textFill="#c64848">
+            <ImageView fitHeight="29.0" fitWidth="193.0" layoutX="125.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="button_signup" layoutX="115.0" layoutY="352.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" text="Sign up !" textFill="#c64848">
                <font>
                   <Font size="22.0" />
                </font>

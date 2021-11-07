@@ -16,7 +16,7 @@ public class Main extends Application {
         URL resource = getClass().getResource("LogInPage.fxml");
         Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
 
