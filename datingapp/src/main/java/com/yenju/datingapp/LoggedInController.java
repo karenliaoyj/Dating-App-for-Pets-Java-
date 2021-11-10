@@ -15,7 +15,8 @@ public class LoggedInController  extends SceneController {
 
     @FXML
     private Button buttonLogOut;   //the log out button
-
+    @FXML
+    private Button buttonNext;
     @FXML
     Label welcomeLabel;
     @FXML
@@ -33,15 +34,22 @@ public class LoggedInController  extends SceneController {
                 SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
             }
         });
+
+        buttonNext.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
     }
-    private void setUserInformation(String username){
-        welcomeLabel.setText("Welcome"+username);
+    private void setUserInformation(){
+        welcomeLabel.setText("Welcome");
         introWordLabel.setText("Find your pet a friend!");
     }
 
     public void setMessage(SceneHelper.MessageContainer messageContainer) {
         this.messageContainer = messageContainer;
-        this.setUserInformation(this.messageContainer.username);
+        //this.setUserInformation(this.messageContainer.username);
     }
 
 }

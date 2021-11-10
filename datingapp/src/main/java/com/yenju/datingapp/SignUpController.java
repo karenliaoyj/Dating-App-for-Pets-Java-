@@ -30,7 +30,7 @@ public class SignUpController extends SceneController {
     @FXML
     private TextField tf_password;
     @FXML
-    private Label lb_errorms;
+    private Label lb_errors;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -57,7 +57,7 @@ public class SignUpController extends SceneController {
                         messageContainer.username = userName;
                         SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
                     }else{
-                        lb_errorms.setText("Please try again!");
+                        lb_errors.setText("Please try again!");
                     }
 
                 }else{

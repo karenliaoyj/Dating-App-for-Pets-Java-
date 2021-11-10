@@ -87,20 +87,19 @@ public class DBConnection {
         PreparedStatement preparedStatement =null;
         ResultSet resultset = null;
         try{
-            connection = DriverManager.getConnection(" jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
-            preparedStatement = connection.prepareStatement("SELECT password, gender FROM users WHERE username = ?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("SELECT password FROM user WHERE username = ?");
             preparedStatement.setString(1,username);
             resultset = preparedStatement.executeQuery();
 
-            if(resultset.isBeforeFirst()){
-                System.out.println("user no founr in the database");
+            if(!resultset.isBeforeFirst()){
+                System.out.println("user not found in the database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Provided credentials are incorrect");
                 alert.show();
             }else{
                 while(resultset.next()){
                     String retrivedPassword = resultset.getString("password");
-                    String retrivesGender = resultset.getString("gender");
                     if(retrivedPassword.equals(password)){
                         return true;
 

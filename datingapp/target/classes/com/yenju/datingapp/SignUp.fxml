@@ -12,7 +12,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.SignUpController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="255.0" style="-fx-background-color: #E9967A#E9967A;">
+      <AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #E9967A#E9967A;">
          <children>
             <ImageView fitHeight="193.0" fitWidth="198.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -46,7 +46,7 @@ public class LogInPageController  extends SceneController {
                 }else{
                     System.out.println("Password did not match");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("The provided credentials are incorrect");
+                    alert.setContentText("The username/password is incorrect");
                     alert.show();
                 }
             }
