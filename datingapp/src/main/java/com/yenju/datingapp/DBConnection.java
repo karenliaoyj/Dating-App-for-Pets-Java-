@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class DBConnection {
@@ -243,9 +244,66 @@ public class DBConnection {
             return false;
         }
 
+    public static ArrayList<String> getChatContent( int userID, int receiverID){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultset = null;
+        ArrayList<String > chatContents = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("SELECT content from chatRecord where senter = ? and receiver = ? order by time ");
+            preparedStatement.setInt(1, userID);
+            preparedStatement.setInt(2, receiverID);
+            resultset = preparedStatement.executeQuery();
+            if(!resultset.isBeforeFirst()){
+                System.out.println("cannot get chat content");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("cannnot get message");
+                alert.show();
+                return null;
+            }else{
+                while(resultset.next()){
+                    String content = resultset.getString("content");
+                    chatContents.add(content);
+                }
+                return chatContents;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultset != null) {
+                try {
+                    resultset.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 
 
-        public static int getMatchPeople(ActionEvent event, int userID) {
+
+
+
+
+
+        public static int getMatchPeople(int userID) {
             Connection connection = null;
             PreparedStatement preparedStatement =null;
             ResultSet resultset = null;
