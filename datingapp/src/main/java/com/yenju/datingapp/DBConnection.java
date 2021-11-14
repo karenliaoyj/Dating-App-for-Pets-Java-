@@ -19,6 +19,122 @@ import java.util.ArrayList;
 
 public class DBConnection {
     // to do : photo upload
+    public static UserProfile getUserAttribute(int userID){
+        Connection connection = null;
+        PreparedStatement preparedStatement =null;
+        ResultSet resultset = null;
+        try{
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("SELECT userID, toy, color, activity FROM javaFx.user where userID = ? ");
+            preparedStatement.setInt(1,userID);
+            resultset = preparedStatement.executeQuery();
+
+            if(!resultset.isBeforeFirst()){
+                System.out.println("user attribute not found in the database");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("no user attribute found");
+                alert.show();
+                return null;
+            }else {
+                while (resultset.next()) {
+                    UserProfile userProfile = new UserProfile();
+                    userProfile.userID = resultset.getInt("userID");
+                    userProfile.toy = resultset.getString("toy");
+                    userProfile.color = resultset.getString("color");
+                    userProfile.activity = resultset.getString("activity");
+                    return userProfile;
+                }
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if(resultset != null){
+                try{
+                    resultset.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(preparedStatement != null){
+                try{
+                    preparedStatement.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+
+    }
+    public static ArrayList<Integer> getMutualLikeUsers(int userID){
+        Connection connection = null;
+        PreparedStatement preparedStatement =null;
+        ResultSet resultset = null;
+        ArrayList<Integer> mutualLikeUsers = new ArrayList<>();
+        try{
+            //SELECT receiverID FROM javaFx.LikeDislikeRecord as record1 where senterID = 7;
+            //SELECT senterID from javaFx.LikeDislikeRecord as record2 where receiverID = 7
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            String sqlStatement = "SELECT record1.receiverID,record2.senterID " +
+                    "FROM javaFx.LikeDislikeRecord as record1  " +
+                    "INNER JOIN javaFx.LikeDislikeRecord as record2 " +
+                    "ON record1.receiverID = record2.senterID " +
+                    "WHERE record1.choose = 1 and record1.senterID = ? and record2.choose = 1 and record2.receiverID = ? ";
+            preparedStatement = connection.prepareStatement(sqlStatement);
+            preparedStatement.setInt(1,userID);
+            preparedStatement.setInt(2,userID);
+            resultset = preparedStatement.executeQuery();
+
+            if(!resultset.isBeforeFirst()){
+                System.out.println("mutual like user not found");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("cannot find mutual liked user");
+                alert.show();
+                return null;
+            }else {
+                while (resultset.next()) {
+                    int mutualLikeID = resultset.getInt("record1.receiverID");
+                    mutualLikeUsers.add(mutualLikeID);
+
+                }
+                return mutualLikeUsers;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if(resultset != null){
+                try{
+                    resultset.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(preparedStatement != null){
+                try{
+                    preparedStatement.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+
+    }
 
     public static boolean sighUpUser(ActionEvent event, String username, String password, String gender, String photoName){
         Connection connection = null;
@@ -191,9 +307,60 @@ public class DBConnection {
 
             return false;
         }
+
+
     }
 
 
+    public static boolean updateMatched(int chatppl,int userID) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultset = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("UPDATE user SET chatppl=?  WHERE userID=?;");
+            preparedStatement.setInt(1, chatppl);
+            preparedStatement.setInt(2, userID);
+            int count = preparedStatement.executeUpdate();
+            if (count <= 0) {
+                System.out.println("no matched user in database");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("no matched user");
+                alert.show();
+            } else {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultset != null) {
+                try {
+                    resultset.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return false;
+        }
+
+    }
         public static boolean writeText(ActionEvent event, int userID, int receiverID, String text){
             Connection connection = null;
             PreparedStatement preparedStatement = null;

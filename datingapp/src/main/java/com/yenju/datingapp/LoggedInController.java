@@ -20,6 +20,8 @@ public class LoggedInController  extends SceneController {
     @FXML
     private Button button_choose;
     @FXML
+    private Button button_check;
+    @FXML
     Label welcomeLabel;
     @FXML
     Label introWordLabel;
@@ -57,6 +59,16 @@ public class LoggedInController  extends SceneController {
                 SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
             }
         });
+
+        button_check.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int matchedUserID = MatchAlgorithm.matchUser(messageContainer.userID);
+                Boolean updateMatchSuccessful = DBConnection.updateMatched(matchedUserID, messageContainer.userID);
+
+            }
+        });
+
 
 
 
