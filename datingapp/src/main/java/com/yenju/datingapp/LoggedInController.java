@@ -16,7 +16,9 @@ public class LoggedInController  extends SceneController {
     @FXML
     private Button buttonLogOut;   //the log out button
     @FXML
-    private Button buttonNext;
+    private Button button_chat;
+    @FXML
+    private Button button_choose;
     @FXML
     Label welcomeLabel;
     @FXML
@@ -35,7 +37,7 @@ public class LoggedInController  extends SceneController {
             }
         });
         // 跳轉到chat room
-        buttonNext.setOnAction(new EventHandler<ActionEvent>() {
+        button_chat.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
@@ -45,6 +47,22 @@ public class LoggedInController  extends SceneController {
                 SceneHelper.changeScene(event, "chatRoom.fxml",messageContainer );
             }
         });
+        button_choose.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Choose Friend";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
+            }
+        });
+
+
+
+
+
+
     }
     private void setUserInformation(){
         welcomeLabel.setText("Welcome");

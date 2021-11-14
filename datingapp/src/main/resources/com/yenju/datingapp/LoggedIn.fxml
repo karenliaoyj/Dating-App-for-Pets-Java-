@@ -17,12 +17,17 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="buttonLogOut" layoutX="169.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Log Out" textFill="#4a4242">
+      <Button fx:id="buttonLogOut" layoutX="97.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Log Out" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonNext" layoutX="321.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Next" textFill="#4a4242">
+      <Button fx:id="button_chat" layoutX="239.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Chat" textFill="#4a4242">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_choose" layoutX="380.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Pick Friend" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>

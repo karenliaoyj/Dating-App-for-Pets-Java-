@@ -244,7 +244,58 @@ public class DBConnection {
             return false;
         }
 
-    public static ArrayList<String> getChatContent( int userID, int receiverID){
+
+     public static boolean chooseFriend(ActionEvent event, int senterID, int receiverID,boolean choose){
+         Connection connection = null;
+         PreparedStatement preparedStatement = null;
+         ResultSet resultset = null;
+         try {
+             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+             preparedStatement = connection.prepareStatement("INSERT INTO LikeDislikeRecord (senterID, receiverID,choose) VALUES (?,?,?)");
+             preparedStatement.setInt(1, senterID);
+             preparedStatement.setInt(2, receiverID);
+             preparedStatement.setBoolean(3, choose);
+             int count = preparedStatement.executeUpdate();
+             if (count <= 0) {
+                 System.out.println("like/dislike cannot insert");
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                 alert.setContentText("like/dislike failed");
+                 alert.show();
+                 return false;
+             } else {
+                 return true;
+
+             }
+
+         } catch (SQLException e) {
+             e.printStackTrace();
+         } finally {
+             if (resultset != null) {
+                 try {
+                     resultset.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                 }
+             }
+             if (preparedStatement != null) {
+                 try {
+                     preparedStatement.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                 }
+             }
+             if (connection != null) {
+                 try {
+                     connection.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                 }
+             }
+         }
+         return false;
+     }
+
+     public static ArrayList<String> getChatContent( int userID, int receiverID){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultset = null;
@@ -354,6 +405,64 @@ public class DBConnection {
             return -1;
 
         }
+    public static ArrayList<UserProfile> getNotMatchedUser(int userID) {
+        Connection connection = null;
+        PreparedStatement preparedStatement =null;
+        ResultSet resultset = null;
+        ArrayList<UserProfile> notMatchedPpl = new ArrayList<>();
+        try{
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("SELECT userID, username,intro, photoname FROM javaFx.user where userID NOT IN (SELECT receiverID From javaFx.LikeDislikeRecord where senterID = ? ) and userID <> ?");
+            preparedStatement.setInt(1,userID);
+            preparedStatement.setInt(2,userID);
+            resultset = preparedStatement.executeQuery();
+
+            if(!resultset.isBeforeFirst()){
+                System.out.println("user not found in the database");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("not matched user not found in database");
+                alert.show();
+                return null;
+            }else {
+                while (resultset.next()) {
+                    UserProfile userProfile = new UserProfile();
+                    userProfile.userID = resultset.getInt("userID");
+                    userProfile.userName = resultset.getString("username");
+                    userProfile.intro = resultset.getString("intro");
+                    userProfile.photoName = resultset.getString("photoname");
+                    notMatchedPpl.add(userProfile);
+
+                }
+                return notMatchedPpl;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if(resultset != null){
+                try{
+                    resultset.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(preparedStatement != null){
+                try{
+                    preparedStatement.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+
+    }
     }
 
 
