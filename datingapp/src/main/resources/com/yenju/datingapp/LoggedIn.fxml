@@ -22,7 +22,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonLogOut1" layoutX="314.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Next" textFill="#4a4242">
+      <Button fx:id="buttonNext" layoutX="321.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Next" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>

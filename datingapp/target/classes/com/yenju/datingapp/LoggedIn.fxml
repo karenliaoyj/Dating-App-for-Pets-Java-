@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.LoggedInController">
    <children>
       <Label layoutX="220.0" layoutY="96.0" prefHeight="49.0" prefWidth="188.0" text="Welcome" textAlignment="CENTER">
@@ -18,7 +17,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="232.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Log Out" textFill="#4a4242" fx:id="buttonLogOut">
+      <Button fx:id="buttonLogOut" layoutX="169.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Log Out" textFill="#4a4242">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonNext" layoutX="321.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Next" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>

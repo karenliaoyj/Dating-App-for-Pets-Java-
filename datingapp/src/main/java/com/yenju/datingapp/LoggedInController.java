@@ -28,17 +28,21 @@ public class LoggedInController  extends SceneController {
         buttonLogOut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
-                messageContainer.title = "Log In!";
-                messageContainer.username = null;
+                SceneHelper.MessageContainer messageContainerLogOut = new SceneHelper.MessageContainer();
+                messageContainerLogOut.title = "Log In!";
+                messageContainerLogOut.username = null;
                 SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
             }
         });
-
+        // 跳轉到chat room
         buttonNext.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Chat Room";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "chatRoom.fxml",messageContainer );
             }
         });
     }

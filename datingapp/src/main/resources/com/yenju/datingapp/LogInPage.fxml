@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="-8.0" layoutY="-12.0" prefHeight="650.0" prefWidth="287.0" rotate="180.0" style="-fx-background-color: #E9967A#E9967A;">
          <children>
-            <ImageView fitHeight="214.0" fitWidth="226.0" layoutX="37.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+            <ImageView fitHeight="214.0" fitWidth="226.0" layoutX="37.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@love-animals.jpg" />
                </image>

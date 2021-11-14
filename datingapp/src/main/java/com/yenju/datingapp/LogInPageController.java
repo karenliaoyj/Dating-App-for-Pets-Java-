@@ -36,12 +36,13 @@ public class LogInPageController  extends SceneController {
 
                 String userName = tf_username.getText();
                 String passWord = tf_password.getText();
-                boolean logInSuccess;
-                logInSuccess = DBConnection.logInUser(event, userName, passWord);
-                if(logInSuccess){
+
+                int userID = DBConnection.logInUser(event, userName, passWord);
+                if(userID != -1){
                     SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
                     messageContainer.title = "Welcome";
                     messageContainer.username = userName;
+                    messageContainer.userID = userID;
                     SceneHelper.changeScene(event, "loggedIn.fxml", messageContainer);
                 }else{
                     System.out.println("Password did not match");

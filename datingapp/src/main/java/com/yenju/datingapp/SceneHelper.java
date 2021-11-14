@@ -16,7 +16,8 @@ public class SceneHelper {
         }
         public String username;
         public String title;
-        ///....to do :add attributes
+        public int userID;
+        //....to do :add attributes
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile , MessageContainer messageContainer){
