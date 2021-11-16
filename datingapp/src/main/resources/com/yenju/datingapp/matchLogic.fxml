@@ -58,6 +58,9 @@
             <Font size="21.0" />
          </font>
       </RadioButton>
-      <Button fx:id="button_go" layoutX="258.0" layoutY="313.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="129.0" text="Go" />
+      <Button fx:id="button_go" layoutX="258.0" layoutY="313.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="129.0" text="Go">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
    </children>
 </AnchorPane>

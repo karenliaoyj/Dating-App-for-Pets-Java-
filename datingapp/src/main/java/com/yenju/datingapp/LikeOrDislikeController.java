@@ -22,6 +22,8 @@ public class LikeOrDislikeController extends SceneController{
     @FXML
     private Button button_like;
     @FXML
+    private Button button_back;
+    @FXML
     private Label lb_name;
     @FXML
     private Label lb_intro;
@@ -77,7 +79,7 @@ public class LikeOrDislikeController extends SceneController{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        // to do : button_dislike, button_ back
         button_like.setOnAction(new EventHandler<ActionEvent>() {
              @Override
              public void handle(ActionEvent event) {
@@ -100,6 +102,17 @@ public class LikeOrDislikeController extends SceneController{
              }
        });
         //to do : add dislike
+
+        button_back.setOnAction((new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Logged In";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "LoggedIn.fxml",messageContainer );
+            }
+        }));
 
     }
 }

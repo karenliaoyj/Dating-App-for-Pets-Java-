@@ -42,6 +42,7 @@ public class DBConnection {
                     userProfile.toy = resultset.getString("toy");
                     userProfile.color = resultset.getString("color");
                     userProfile.activity = resultset.getString("activity");
+                    userProfile.chatppl = resultset.getInt("chatppl");
                     return userProfile;
                 }
                 return null;

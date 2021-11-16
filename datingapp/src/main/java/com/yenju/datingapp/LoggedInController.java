@@ -3,6 +3,7 @@ package com.yenju.datingapp;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
@@ -49,6 +50,7 @@ public class LoggedInController  extends SceneController {
                 SceneHelper.changeScene(event, "chatRoom.fxml",messageContainer );
             }
         });
+        // the pick friend button
         button_choose.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -56,7 +58,15 @@ public class LoggedInController  extends SceneController {
                 messageContainerNext.title = "Choose Friend";
                 messageContainerNext.username =null;
                 messageContainerNext.userID = messageContainer.userID;
-                SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
+                //UserProfile currentUser = DBConnection.getUserAttribute(messageContainer.userID);
+                //if(currentUser.chatppl == null){
+                    SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
+                //}else{
+                   // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                   // alert.setContentText("You already have a match");
+                   // alert.show();
+                //}
+
             }
         });
 

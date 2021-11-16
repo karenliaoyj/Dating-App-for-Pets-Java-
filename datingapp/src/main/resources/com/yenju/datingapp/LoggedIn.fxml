@@ -27,7 +27,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_choose" layoutX="300.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Pick Friend" textFill="#4a4242">
+      <Button fx:id="button_choose" layoutX="307.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Pick Friend" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>
