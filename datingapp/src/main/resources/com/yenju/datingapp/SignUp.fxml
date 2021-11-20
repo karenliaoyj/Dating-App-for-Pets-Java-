@@ -50,7 +50,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField layoutX="127.0" layoutY="189.0" prefHeight="104.0" prefWidth="187.0" />
+            <TextField fx:id="tf_info" layoutX="127.0" layoutY="189.0" prefHeight="104.0" prefWidth="187.0" />
             <Label layoutX="15.0" layoutY="137.0" prefHeight="40.0" prefWidth="108.0" text="Gender" textFill="#d76a72">
                <font>
                   <Font size="22.0" />

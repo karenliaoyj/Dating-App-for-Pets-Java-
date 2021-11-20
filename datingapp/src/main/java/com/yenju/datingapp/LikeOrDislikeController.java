@@ -41,16 +41,17 @@ public class LikeOrDislikeController extends SceneController{
    @Override
     public void setMessage(SceneHelper.MessageContainer messageContainer) {
         this.messageContainer = messageContainer;
+
         getUnMatched();
         showProfile();
     }
 
     private void getUnMatched(){
-       if(notMatchedUser!=null){
+       if(notMatchedUser==null){
            notMatchedUser = new LinkedList<>( DBConnection.getNotMatchedUser(messageContainer.userID));
        }else{
            Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setContentText("No more profile to show");
+           alert.setContentText("No more profile to show, here");
            alert.show();
        }
 

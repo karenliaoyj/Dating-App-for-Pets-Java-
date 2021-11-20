@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 
@@ -22,6 +23,8 @@ public class LoggedInController  extends SceneController {
     private Button button_choose;
     @FXML
     private Button button_check;
+    @FXML
+    private Button button_match;
     @FXML
     Label welcomeLabel;
     @FXML
@@ -58,14 +61,7 @@ public class LoggedInController  extends SceneController {
                 messageContainerNext.title = "Choose Friend";
                 messageContainerNext.username =null;
                 messageContainerNext.userID = messageContainer.userID;
-                //UserProfile currentUser = DBConnection.getUserAttribute(messageContainer.userID);
-                //if(currentUser.chatppl == null){
-                    SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
-                //}else{
-                   // Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                   // alert.setContentText("You already have a match");
-                   // alert.show();
-                //}
+                SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
 
             }
         });
@@ -74,8 +70,19 @@ public class LoggedInController  extends SceneController {
             @Override
             public void handle(ActionEvent event) {
                 int matchedUserID = MatchAlgorithm.matchUser(messageContainer.userID);
-                Boolean updateMatchSuccessful = DBConnection.updateMatched(matchedUserID, messageContainer.userID);
+                DBConnection.updateMatched(matchedUserID, messageContainer.userID);
 
+            }
+        });
+
+        button_match.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Choose Friend";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "matchLogic.fxml",messageContainer );
             }
         });
 

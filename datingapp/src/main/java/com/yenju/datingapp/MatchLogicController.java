@@ -53,6 +53,11 @@ public class MatchLogicController extends SceneController  {
                 String toggleActivity = ((RadioButton) toggleGroupActivity.getSelectedToggle()).getText();
 
                 boolean success = DBConnection.matchLogic(event, toggleToy,toggleColor,toggleActivity,messageContainer.userID);
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Choose Friend";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
 
 
             }

@@ -17,7 +17,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="buttonLogOut" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Log Out" textFill="#4a4242">
+      <Button fx:id="buttonLogOut" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" text="Log Out" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,6 +33,11 @@
          </font>
       </Button>
       <Button fx:id="button_check" layoutX="442.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="139.0" text="Check Match" textFill="#4a4242">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_match" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="123.0" text="Match First" textFill="#4a4242">
          <font>
             <Font size="18.0" />
          </font>

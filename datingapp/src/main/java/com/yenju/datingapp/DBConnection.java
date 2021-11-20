@@ -42,7 +42,7 @@ public class DBConnection {
                     userProfile.toy = resultset.getString("toy");
                     userProfile.color = resultset.getString("color");
                     userProfile.activity = resultset.getString("activity");
-                    userProfile.chatppl = resultset.getInt("chatppl");
+                    //userProfile.chatppl = resultset.getInt("chatppl");
                     return userProfile;
                 }
                 return null;
@@ -137,7 +137,7 @@ public class DBConnection {
 
     }
 
-    public static boolean sighUpUser(ActionEvent event, String username, String password, String gender, String photoName){
+    public static boolean sighUpUser(ActionEvent event, String username, String password, String gender, String intro, String photoName){
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExist = null;
@@ -155,11 +155,12 @@ public class DBConnection {
                 alert.setContentText("You cannot use this username");
                 alert.show();
             }else {
-                psInsert = connection.prepareStatement("INSERT INTO user (username, password, gender,photoName) VALUES (?, ?, ?,?)");
+                psInsert = connection.prepareStatement("INSERT INTO user (username, password, gender, intro, photoName) VALUES (?, ?, ?, ?, ?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.setString(3, gender);
-                psInsert.setString(4,photoName);
+                psInsert.setString(4, intro);
+                psInsert.setString(5,photoName);
                 psInsert.executeUpdate();
                 return true;
             }
@@ -215,7 +216,7 @@ public class DBConnection {
             if(!resultset.isBeforeFirst()){
                 System.out.println("user not found in the database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Provided credentials are incorrect");
+                alert.setContentText("User not found. Cannot log in");
                 alert.show();
             }else{
                 while(resultset.next()){
@@ -313,7 +314,7 @@ public class DBConnection {
     }
 
 
-    public static boolean updateMatched(int chatppl,int userID) {
+    public static void updateMatched(int chatppl,int userID) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultset = null;
@@ -328,8 +329,11 @@ public class DBConnection {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("no matched user");
                 alert.show();
+
             } else {
-                return true;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You have a match! Start chatting! ");
+                alert.show();
 
             }
 
@@ -358,7 +362,7 @@ public class DBConnection {
                 }
             }
 
-            return false;
+
         }
 
     }

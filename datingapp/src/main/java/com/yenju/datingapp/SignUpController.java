@@ -41,6 +41,8 @@ public class SignUpController extends SceneController {
     @FXML
     private TextField tf_password;
     @FXML
+    private TextField tf_info;
+    @FXML
     private Label lb_errors;
     Path src;
     Path dst;
@@ -67,14 +69,15 @@ public class SignUpController extends SceneController {
                 boolean signup;
                 String userName = tf_username.getText();
                 String password = tf_password.getText();
+                String info = tf_info.getText();
                 String toggleName = ((RadioButton) toggleGroup.getSelectedToggle()).getText(); //get male or female
                 String photoName = dst.toString();
                 photoName = photoName.substring(photoName.lastIndexOf("/")+1);
                 if(!userName.trim().isEmpty() && !password.trim().isEmpty()){
-                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),toggleName,photoName);
+                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),tf_info.getText(),toggleName,photoName);
                     if(signup ){
                         SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
-                        messageContainer.title = "Log In!";
+                        messageContainer.title = "Log in";
                         messageContainer.username = userName;
                         SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
                     }else{
