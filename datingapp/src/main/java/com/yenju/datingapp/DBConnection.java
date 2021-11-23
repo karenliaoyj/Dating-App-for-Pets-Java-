@@ -42,7 +42,7 @@ public class DBConnection {
                     userProfile.toy = resultset.getString("toy");
                     userProfile.color = resultset.getString("color");
                     userProfile.activity = resultset.getString("activity");
-                    //userProfile.chatppl = resultset.getInt("chatppl");
+                    userProfile.chatppl = resultset.getInt("chatppl");
                     return userProfile;
                 }
                 return null;
@@ -152,7 +152,7 @@ public class DBConnection {
             if(resultSet.isBeforeFirst()){ //user exits
                 System.out.println("User already exists");
                 Alert alert =  new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this username");
+                alert.setContentText("Others have use this name");
                 alert.show();
             }else {
                 psInsert = connection.prepareStatement("INSERT INTO user (username, password, gender, intro, photoName) VALUES (?, ?, ?, ?, ?)");
@@ -160,7 +160,7 @@ public class DBConnection {
                 psInsert.setString(2, password);
                 psInsert.setString(3, gender);
                 psInsert.setString(4, intro);
-                psInsert.setString(5,photoName);
+                psInsert.setString(5, photoName);
                 psInsert.executeUpdate();
                 return true;
             }
@@ -207,25 +207,30 @@ public class DBConnection {
         Connection connection = null;
         PreparedStatement preparedStatement =null;
         ResultSet resultset = null;
+        String retrivedPassword;
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
             preparedStatement = connection.prepareStatement("SELECT password, userID FROM user WHERE username = ?");
             preparedStatement.setString(1,username);
             resultset = preparedStatement.executeQuery();
 
-            if(!resultset.isBeforeFirst()){
+            if(!resultset.isBeforeFirst() ) {
                 System.out.println("user not found in the database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("User not found. Cannot log in");
                 alert.show();
             }else{
                 while(resultset.next()){
-                    String retrivedPassword = resultset.getString("password");
+                    retrivedPassword = resultset.getString("password");
                     int retrivedUserID = resultset.getInt("userID");
                     if(retrivedPassword.equals(password)){
                         return retrivedUserID;
 
                     }else{
+                        System.out.println("Password did not match");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("The username/password is incorrect");
+                        alert.show();
                         return -1;
 
                     }
@@ -324,7 +329,7 @@ public class DBConnection {
             preparedStatement.setInt(1, chatppl);
             preparedStatement.setInt(2, userID);
             int count = preparedStatement.executeUpdate();
-            if (count <= 0) {
+            if (count <= 0 ) {
                 System.out.println("no matched user in database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("no matched user");
@@ -478,6 +483,13 @@ public class DBConnection {
             preparedStatement.setInt(1, userID);
             preparedStatement.setInt(2, receiverID);
             resultset = preparedStatement.executeQuery();
+            if(chatContents.isEmpty()){
+                while(resultset.next()){
+                    String content = resultset.getString("content");
+                    chatContents.add(content);
+                }
+                return chatContents;
+            }
             if(!resultset.isBeforeFirst()){
                 System.out.println("cannot get chat content");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -584,7 +596,7 @@ public class DBConnection {
         ArrayList<UserProfile> notMatchedPpl = new ArrayList<>();
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
-            preparedStatement = connection.prepareStatement("SELECT userID, username,intro, photoname FROM javaFx.user where userID NOT IN (SELECT receiverID From javaFx.LikeDislikeRecord where senterID = ? ) and userID <> ?");
+            preparedStatement = connection.prepareStatement("SELECT userID, username,intro, photoname FROM javaFx.user where chatppl is null and userID NOT IN (SELECT receiverID From javaFx.LikeDislikeRecord where senterID = ? ) and userID <> ?");
             preparedStatement.setInt(1,userID);
             preparedStatement.setInt(2,userID);
             resultset = preparedStatement.executeQuery();

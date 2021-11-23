@@ -50,7 +50,17 @@ public class LoggedInController  extends SceneController {
                 messageContainerNext.title = "Chat Room";
                 messageContainerNext.username =null;
                 messageContainerNext.userID = messageContainer.userID;
-                SceneHelper.changeScene(event, "chatRoom.fxml",messageContainer );
+                UserProfile currentUser = new UserProfile();
+                int chatppl = DBConnection.getMatchPeople(messageContainer.userID);
+                if(chatppl != 0){
+                    SceneHelper.changeScene(event, "chatRoom.fxml",messageContainer );
+                }else{
+                    System.out.println("not matched user cannot chat");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Match before you chat");
+                    alert.show();
+                }
+
             }
         });
         // the pick friend button

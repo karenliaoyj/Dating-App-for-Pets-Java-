@@ -14,9 +14,10 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lb_otherschat" alignment="TOP_LEFT" layoutX="2.0" layoutY="59.0" prefHeight="234.0" prefWidth="313.0" style="-fx-background-color: grey;" />
-      <Label fx:id="lb_userchat" alignment="TOP_LEFT" layoutX="330.0" layoutY="61.0" prefHeight="234.0" prefWidth="256.0" style="-fx-background-color: pink;" />
+      <Label fx:id="lb_otherschat" alignment="TOP_LEFT" layoutX="2.0" layoutY="59.0" prefHeight="234.0" prefWidth="292.0" style="-fx-background-color: grey;" />
+      <Label fx:id="lb_userchat" alignment="TOP_LEFT" layoutX="305.0" layoutY="59.0" prefHeight="234.0" prefWidth="283.0" style="-fx-background-color: pink;" />
       <Button fx:id="button_send" layoutX="487.0" layoutY="311.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Send" />
       <Button fx:id="button_logout" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="67.0" text="Log out" />
+      <Button fx:id="button_back" layoutX="513.0" layoutY="16.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="67.0" text="back" />
    </children>
 </AnchorPane>

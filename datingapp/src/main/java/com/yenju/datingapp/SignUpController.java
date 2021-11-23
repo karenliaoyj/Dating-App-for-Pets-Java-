@@ -74,7 +74,7 @@ public class SignUpController extends SceneController {
                 String photoName = dst.toString();
                 photoName = photoName.substring(photoName.lastIndexOf("/")+1);
                 if(!userName.trim().isEmpty() && !password.trim().isEmpty()){
-                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),tf_info.getText(),toggleName,photoName);
+                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),toggleName, tf_info.getText(),photoName);
                     if(signup ){
                         SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
                         messageContainer.title = "Log in";

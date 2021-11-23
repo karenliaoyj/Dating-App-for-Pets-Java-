@@ -44,11 +44,7 @@ public class LogInPageController  extends SceneController {
                     messageContainer.username = userName;
                     messageContainer.userID = userID;
                     SceneHelper.changeScene(event, "loggedIn.fxml", messageContainer);
-                }else{
-                    System.out.println("Password did not match");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("The username/password is incorrect");
-                    alert.show();
+
                 }
             }
         });

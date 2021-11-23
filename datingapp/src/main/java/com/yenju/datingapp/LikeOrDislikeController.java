@@ -102,7 +102,27 @@ public class LikeOrDislikeController extends SceneController{
 
              }
        });
-        //to do : add dislike
+        button_dislike.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boolean likeDislikeSuccess = DBConnection.chooseFriend(event, messageContainer.userID, receiverID, false);
+                Alert alert;
+                if(likeDislikeSuccess){
+                    boolean show = showProfile();
+                    if(!show){
+                        alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("No more profile to show");
+                        alert.show();
+                    }
+                }else{
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("like dislike failed");
+                    alert.show();
+                }
+
+            }
+        });
+
 
         button_back.setOnAction((new EventHandler<ActionEvent>() {
             @Override

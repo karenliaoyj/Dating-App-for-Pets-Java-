@@ -17,6 +17,7 @@ public class SceneHelper {
         public String username;
         public String title;
         public int userID;
+        public int chatppl;
         //....to do :add attributes
     }
 

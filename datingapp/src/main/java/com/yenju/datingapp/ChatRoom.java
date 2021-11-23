@@ -26,6 +26,8 @@ public class ChatRoom extends SceneController{
     private Button button_send;
     @FXML
     private Button button_logout;
+    @FXML
+    private Button button_back;
 
     private int receiverID;
     private void syncMessage(){
@@ -67,6 +69,17 @@ public class ChatRoom extends SceneController{
                 messageContainerLogOut.title = "Log In!";
                 messageContainerLogOut.username = null;
                 SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
+            }
+        });
+
+        button_back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Logged In";
+                messageContainerNext.username =null;
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "LoggedIn.fxml",messageContainer );
             }
         });
 
