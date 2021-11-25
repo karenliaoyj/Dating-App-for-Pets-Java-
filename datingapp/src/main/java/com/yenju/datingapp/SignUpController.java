@@ -2,8 +2,6 @@ package com.yenju.datingapp;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,11 +15,8 @@ import java.util.UUID;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class SignUpController extends SceneController {
@@ -74,14 +69,12 @@ public class SignUpController extends SceneController {
                 String photoName = dst.toString();
                 photoName = photoName.substring(photoName.lastIndexOf("/")+1);
                 if(!userName.trim().isEmpty() && !password.trim().isEmpty()){
-                    signup = DBConnection.sighUpUser(event, tf_username.getText(),tf_password.getText(),toggleName, tf_info.getText(),photoName);
+                    signup = DBConnection.signUpUser(event, tf_username.getText(),tf_password.getText(),toggleName, tf_info.getText(),photoName);
                     if(signup ){
                         SceneHelper.MessageContainer messageContainer = new SceneHelper.MessageContainer();
                         messageContainer.title = "Log in";
                         messageContainer.username = userName;
                         SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
-                    }else{
-                        lb_errors.setText("Please try again!");
                     }
 
                 }else{

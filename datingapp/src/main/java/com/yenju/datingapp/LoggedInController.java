@@ -80,7 +80,9 @@ public class LoggedInController  extends SceneController {
             @Override
             public void handle(ActionEvent event) {
                 int matchedUserID = MatchAlgorithm.matchUser(messageContainer.userID);
-                DBConnection.updateMatched(matchedUserID, messageContainer.userID);
+                if(matchedUserID != -1){
+                    DBConnection.updateMatched(matchedUserID, messageContainer.userID);
+                }
 
             }
         });

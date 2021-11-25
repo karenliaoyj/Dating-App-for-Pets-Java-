@@ -6,8 +6,7 @@ import java.util.Comparator;
 
 public class MatchAlgorithm {
     //input: UserID, output :USerID
-    //
-    public static int matchUser(int userID){
+    public static Integer matchUser(int userID){
         ArrayList<UserProfile> users = new ArrayList<>();
         UserProfile myUserProfile = DBConnection.getUserAttribute(userID);
         if(myUserProfile == null ){

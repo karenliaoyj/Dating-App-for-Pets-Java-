@@ -47,11 +47,14 @@ public class LikeOrDislikeController extends SceneController{
     }
 
     private void getUnMatched(){
-       if(notMatchedUser==null){
-           notMatchedUser = new LinkedList<>( DBConnection.getNotMatchedUser(messageContainer.userID));
+       if(notMatchedUser ==null){
+           ArrayList unMatchedUser = DBConnection.getNotMatchedUser(messageContainer.userID);
+           if(unMatchedUser != null && !unMatchedUser.isEmpty() ){
+               notMatchedUser = new LinkedList<>(unMatchedUser);
+           }
        }else{
            Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setContentText("No more profile to show, here");
+           alert.setContentText("No more profile to show");
            alert.show();
        }
 

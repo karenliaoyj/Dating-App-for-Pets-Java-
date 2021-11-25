@@ -8,7 +8,7 @@ public class UserProfile {
     public String toy;
     public String color;
     public String activity;
-    public int chatppl;
+
 
     public int sameAttribute(UserProfile userProfile){
         int count = 0;

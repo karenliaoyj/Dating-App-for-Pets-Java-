@@ -42,7 +42,7 @@ public class DBConnection {
                     userProfile.toy = resultset.getString("toy");
                     userProfile.color = resultset.getString("color");
                     userProfile.activity = resultset.getString("activity");
-                    userProfile.chatppl = resultset.getInt("chatppl");
+
                     return userProfile;
                 }
                 return null;
@@ -81,8 +81,6 @@ public class DBConnection {
         ResultSet resultset = null;
         ArrayList<Integer> mutualLikeUsers = new ArrayList<>();
         try{
-            //SELECT receiverID FROM javaFx.LikeDislikeRecord as record1 where senterID = 7;
-            //SELECT senterID from javaFx.LikeDislikeRecord as record2 where receiverID = 7
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
             String sqlStatement = "SELECT record1.receiverID,record2.senterID " +
                     "FROM javaFx.LikeDislikeRecord as record1  " +
@@ -137,7 +135,7 @@ public class DBConnection {
 
     }
 
-    public static boolean sighUpUser(ActionEvent event, String username, String password, String gender, String intro, String photoName){
+    public static boolean signUpUser(ActionEvent event, String username, String password, String gender, String intro, String photoName){
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExist = null;
@@ -319,7 +317,7 @@ public class DBConnection {
     }
 
 
-    public static void updateMatched(int chatppl,int userID) {
+    public static void updateMatched(Integer chatppl,int userID) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultset = null;
@@ -334,9 +332,8 @@ public class DBConnection {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("no matched user");
                 alert.show();
-
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+            } else if (count > 0 ){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("You have a match! Start chatting! ");
                 alert.show();
 
@@ -603,9 +600,6 @@ public class DBConnection {
 
             if(!resultset.isBeforeFirst()){
                 System.out.println("user not found in the database");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("not matched user not found in database");
-                alert.show();
                 return null;
             }else {
                 while (resultset.next()) {

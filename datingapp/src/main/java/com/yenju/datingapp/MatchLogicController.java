@@ -27,6 +27,8 @@ public class MatchLogicController extends SceneController  {
     private RadioButton rb_sleep;
     @FXML
     private Button button_go;
+    @FXML
+    private Button button_back;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -60,6 +62,16 @@ public class MatchLogicController extends SceneController  {
                 SceneHelper.changeScene(event, "likeOrDislike.fxml",messageContainer );
 
 
+            }
+        });
+
+        button_back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneHelper.MessageContainer messageContainerNext = new SceneHelper.MessageContainer();
+                messageContainerNext.title = "Logged In";
+                messageContainerNext.userID = messageContainer.userID;
+                SceneHelper.changeScene(event, "LoggedIn.fxml", messageContainer);
             }
         });
 
