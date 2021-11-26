@@ -4,8 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**This define the match algorithm
+ *
+ */
+
 public class MatchAlgorithm {
     //input: UserID, output :USerID
+
+    /**get match user
+     *
+     * @param userID
+     * @return match user
+     */
     public static Integer matchUser(int userID){
         ArrayList<UserProfile> users = new ArrayList<>();
         UserProfile myUserProfile = DBConnection.getUserAttribute(userID);
@@ -36,6 +46,7 @@ public class MatchAlgorithm {
             }
         });
         return users.get(users.size()-1).userID;
+
 
 
 

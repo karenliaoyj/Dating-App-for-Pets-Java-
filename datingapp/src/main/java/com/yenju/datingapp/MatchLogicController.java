@@ -10,6 +10,10 @@ import javafx.scene.control.ToggleGroup;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**This page is to control the match logic
+ *
+ */
+
 public class MatchLogicController extends SceneController  {
     private SceneHelper.MessageContainer messageContainer;
 
@@ -30,6 +34,11 @@ public class MatchLogicController extends SceneController  {
     @FXML
     private Button button_back;
 
+    /**define buttons in the page
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ToggleGroup toggleGroupToy = new ToggleGroup(); //one click at a time

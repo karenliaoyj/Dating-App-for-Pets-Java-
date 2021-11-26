@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.MatchLogicController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFACD#FFFACD;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.MatchLogicController">
    <children>
-      <Label layoutX="41.0" layoutY="101.0" prefHeight="51.0" prefWidth="224.0" text="What is your favorite toy?">
+      <Label layoutX="26.0" layoutY="101.0" prefHeight="51.0" prefWidth="239.0" text="What is your favorite toy?">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="167.0" prefHeight="34.0" prefWidth="211.0" text="What is your favorite color?">
+      <Label layoutX="28.0" layoutY="167.0" prefHeight="34.0" prefWidth="233.0" text="What is your favorite color?">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="225.0" prefHeight="51.0" prefWidth="224.0" text="What is your favorite activity?">
+      <Label layoutX="26.0" layoutY="217.0" prefHeight="51.0" prefWidth="245.0" text="What is your favorite activity?">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <Label layoutX="142.0" layoutY="20.0" prefHeight="65.0" prefWidth="348.0" text="Choose Your Friend" textAlignment="CENTER">
@@ -33,12 +33,12 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rb_black" layoutX="285.0" layoutY="174.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="82.0" text="Black">
+      <RadioButton fx:id="rb_black" layoutX="285.0" layoutY="170.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="82.0" text="Black">
          <font>
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rb_play" layoutX="285.0" layoutY="242.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Play">
+      <RadioButton fx:id="rb_play" layoutX="285.0" layoutY="229.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Play">
          <font>
             <Font size="20.0" />
          </font>
@@ -48,20 +48,20 @@
             <Font size="21.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rb_white" layoutX="417.0" layoutY="173.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="114.0" text="White">
+      <RadioButton fx:id="rb_white" layoutX="411.0" layoutY="167.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="114.0" text="White">
          <font>
             <Font size="22.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rb_sleep" layoutX="415.0" layoutY="233.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="114.0" text="Sleep">
+      <RadioButton fx:id="rb_sleep" layoutX="411.0" layoutY="220.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="114.0" text="Sleep">
          <font>
             <Font size="21.0" />
          </font>
       </RadioButton>
-      <Button fx:id="button_go" layoutX="258.0" layoutY="313.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="129.0" text="Go">
+      <Button fx:id="button_go" layoutX="224.0" layoutY="303.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="129.0" style="-fx-background-color: #FFE4E1;" text="Go">
          <font>
             <Font size="22.0" />
          </font></Button>
-      <Button fx:id="button_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" text="back" />
+      <Button fx:id="button_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3;" text="back" />
    </children>
 </AnchorPane>

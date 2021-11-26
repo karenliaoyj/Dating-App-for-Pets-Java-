@@ -15,6 +15,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/** This controller is to let user to like or dislike others
+ *
+ */
+
 public class LikeOrDislikeController extends SceneController{
     private SceneHelper.MessageContainer messageContainer;
     @FXML
@@ -38,6 +42,11 @@ public class LikeOrDislikeController extends SceneController{
 
     private Queue<UserProfile> notMatchedUser;
 
+    /** set message
+     *
+     * @param messageContainer
+     */
+
    @Override
     public void setMessage(SceneHelper.MessageContainer messageContainer) {
         this.messageContainer = messageContainer;
@@ -46,6 +55,9 @@ public class LikeOrDislikeController extends SceneController{
         showProfile();
     }
 
+    /** get unmatched
+     *
+     */
     private void getUnMatched(){
        if(notMatchedUser ==null){
            ArrayList unMatchedUser = DBConnection.getNotMatchedUser(messageContainer.userID);
@@ -60,6 +72,11 @@ public class LikeOrDislikeController extends SceneController{
 
 
     }
+
+    /** show profile
+     *
+     * @return true or false to stop
+     */
     public boolean showProfile(){
        if(notMatchedUser == null){
            return false;
@@ -80,6 +97,11 @@ public class LikeOrDislikeController extends SceneController{
        return true;
     }
 
+    /** difine different buttons
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

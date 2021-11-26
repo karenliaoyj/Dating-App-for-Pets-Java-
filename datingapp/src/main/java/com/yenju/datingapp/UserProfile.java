@@ -1,5 +1,9 @@
 package com.yenju.datingapp;
 
+/**this defines the attributes in the user profile
+ *
+ */
+
 public class UserProfile {
     public int userID;
     public String userName;

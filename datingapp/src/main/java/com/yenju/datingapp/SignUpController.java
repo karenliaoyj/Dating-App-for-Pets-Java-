@@ -19,6 +19,10 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
+/**this is for user to sign up
+ *
+ */
+
 public class SignUpController extends SceneController {
     private SceneHelper.MessageContainer messageContainer;
 
@@ -42,6 +46,11 @@ public class SignUpController extends SceneController {
     Path src;
     Path dst;
 
+    /**define buttons in this page
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ToggleGroup toggleGroup = new ToggleGroup(); //one click at a time

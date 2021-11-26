@@ -11,12 +11,15 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
 
+/** This is for the logged in page controller
+ *
+ */
 
 public class LoggedInController  extends SceneController {
     private SceneHelper.MessageContainer messageContainer;
 
     @FXML
-    private Button buttonLogOut;   //the log out button
+    private Button buttonLogOut;
     @FXML
     private Button button_chat;
     @FXML
@@ -30,7 +33,13 @@ public class LoggedInController  extends SceneController {
     @FXML
     Label introWordLabel;
 
+    /**This method is to define each button
+     *
+     * @param location
+     * @param resources
+     */
     @Override
+
     public void initialize (URL location, ResourceBundle resources) {
 
         buttonLogOut.setOnAction(new EventHandler<ActionEvent>() {
@@ -42,7 +51,7 @@ public class LoggedInController  extends SceneController {
                 SceneHelper.changeScene(event, "LogInPage.fxml", messageContainer);
             }
         });
-        // 跳轉到chat room
+
         button_chat.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -75,18 +84,18 @@ public class LoggedInController  extends SceneController {
 
             }
         });
-
+        // check matched status
         button_check.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 int matchedUserID = MatchAlgorithm.matchUser(messageContainer.userID);
                 if(matchedUserID != -1){
-                    DBConnection.updateMatched(matchedUserID, messageContainer.userID);
+                    DBConnection.updateMatched(matchedUserID, messageContainer.userID, messageContainer.username);
                 }
 
             }
         });
-
+        // start matching
         button_match.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -106,13 +115,13 @@ public class LoggedInController  extends SceneController {
 
     }
     private void setUserInformation(){
-        welcomeLabel.setText("Welcome");
+        welcomeLabel.setText("Welcome to Dating App");
         introWordLabel.setText("Find your pet a friend!");
     }
 
     public void setMessage(SceneHelper.MessageContainer messageContainer) {
         this.messageContainer = messageContainer;
-        //this.setUserInformation(this.messageContainer.username);
+
     }
 
 }

@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**this is for the change scene message
+ *
+ */
+
 public class SceneHelper {
     public static class MessageContainer {
         public MessageContainer(){

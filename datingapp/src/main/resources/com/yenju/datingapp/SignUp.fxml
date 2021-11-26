@@ -14,12 +14,12 @@
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #E9967A#E9967A;">
          <children>
-            <ImageView fitHeight="193.0" fitWidth="198.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="199.0" fitWidth="209.0" layoutX="33.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@love-animals.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="33.0" layoutY="233.0" prefHeight="29.0" prefWidth="164.0" text="Sign Up Now !">
+            <Label layoutX="49.0" layoutY="236.0" prefHeight="29.0" prefWidth="163.0" text="Sign Up Now !">
                <font>
                   <Font size="24.0" />
                </font>
@@ -44,13 +44,13 @@
                </font>
             </Label>
             <TextField fx:id="tf_username" layoutX="127.0" layoutY="28.0" prefHeight="46.0" prefWidth="187.0" />
-            <TextField fx:id="tf_password" layoutX="126.0" layoutY="88.0" prefHeight="40.0" prefWidth="187.0" />
+            <TextField fx:id="tf_password" layoutX="126.0" layoutY="82.0" prefHeight="46.0" prefWidth="187.0" />
             <Label layoutX="15.0" layoutY="180.0" prefHeight="40.0" prefWidth="108.0" text="Short Intro" textFill="#d76a72">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_info" layoutX="127.0" layoutY="189.0" prefHeight="104.0" prefWidth="187.0" />
+            <TextField fx:id="tf_info" layoutX="123.0" layoutY="189.0" prefHeight="104.0" prefWidth="187.0" />
             <Label layoutX="15.0" layoutY="137.0" prefHeight="40.0" prefWidth="108.0" text="Gender" textFill="#d76a72">
                <font>
                   <Font size="22.0" />
@@ -72,7 +72,7 @@
                </font>
             </Label>
             <ImageView fitHeight="29.0" fitWidth="193.0" layoutX="125.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="button_signup" layoutX="115.0" layoutY="352.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" text="Sign up !" textFill="#c64848">
+            <Button fx:id="button_signup" layoutX="103.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" text="Sign up !" textFill="#c64848">
                <font>
                   <Font size="22.0" />
                </font>

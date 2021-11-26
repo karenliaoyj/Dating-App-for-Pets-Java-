@@ -6,22 +6,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.LikeOrDislikeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFF0#FFFFF0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yenju.datingapp.LikeOrDislikeController">
    <children>
-      <ImageView fx:id="im_image" fitHeight="150.0" fitWidth="200.0" layoutX="185.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lb_intro" layoutX="210.0" layoutY="232.0" prefHeight="15.0" prefWidth="138.0" text="Intro" />
-      <Label fx:id="lb_name" layoutX="210.0" layoutY="200.0" prefHeight="15.0" prefWidth="138.0" text="Name" />
-      <Button fx:id="button_like" layoutX="145.0" layoutY="270.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="138.0" text="Like">
+      <ImageView fx:id="im_image" fitHeight="164.0" fitWidth="274.0" layoutX="173.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lb_intro" contentDisplay="CENTER" layoutX="170.0" layoutY="235.0" prefHeight="65.0" prefWidth="280.0" text="Intro">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="lb_name" contentDisplay="CENTER" layoutX="170.0" layoutY="175.0" prefHeight="58.0" prefWidth="280.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="button_like" layoutX="140.0" layoutY="310.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="129.0" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Like">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="button_dislike" layoutX="331.0" layoutY="270.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="150.0" text="Dislike">
+      <Button fx:id="button_dislike" layoutX="335.0" layoutY="310.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="129.0" style="-fx-background-color: #708090#708090;" text="Dislike" textFill="#f8f6f6">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="button_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back">
+      <Button fx:id="button_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3;" text="Back">
          <font>
             <Font size="14.0" />
          </font>

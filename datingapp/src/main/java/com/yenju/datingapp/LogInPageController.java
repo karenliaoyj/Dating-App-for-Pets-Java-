@@ -13,6 +13,10 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**This is for user to log in
+ *
+ */
+
 public class LogInPageController  extends SceneController {
     private SceneHelper.MessageContainer messageContainer;
 
@@ -26,6 +30,12 @@ public class LogInPageController  extends SceneController {
 
     @FXML
     private TextField tf_password;
+
+    /**define buttons in the log in page
+     *
+     * @param location
+     * @param resources
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources){

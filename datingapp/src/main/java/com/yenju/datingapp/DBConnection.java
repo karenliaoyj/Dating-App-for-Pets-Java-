@@ -16,9 +16,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+/**This program is for the Database controller
+ *
+ */
 public class DBConnection {
-    // to do : photo upload
+    /** This method is to get the user attribute and then match
+     *
+     * @param userID
+     * @return
+     */
     public static UserProfile getUserAttribute(int userID){
         Connection connection = null;
         PreparedStatement preparedStatement =null;
@@ -75,6 +81,12 @@ public class DBConnection {
         return null;
 
     }
+
+    /**This method is to get mutual like user
+     *
+     * @param userID
+     * @return
+     */
     public static ArrayList<Integer> getMutualLikeUsers(int userID){
         Connection connection = null;
         PreparedStatement preparedStatement =null;
@@ -135,6 +147,16 @@ public class DBConnection {
 
     }
 
+    /** This method is for sign up user
+     *
+     * @param event
+     * @param username
+     * @param password
+     * @param gender
+     * @param intro
+     * @param photoName
+     * @return true
+     */
     public static boolean signUpUser(ActionEvent event, String username, String password, String gender, String intro, String photoName){
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -201,6 +223,14 @@ public class DBConnection {
         return false;
     }
 
+    /** This method is for log in user
+     *
+     * @param event
+     * @param username
+     * @param password
+     * @return the log in user ID
+     */
+
     public static int logInUser(ActionEvent event, String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement =null;
@@ -263,6 +293,15 @@ public class DBConnection {
         return -1;
     }
 
+    /** Set up match logic
+     *
+     * @param event
+     * @param toy
+     * @param color
+     * @param activity
+     * @param userID
+     * @return true or false
+     */
     public static boolean matchLogic(ActionEvent event,String toy, String color, String activity, int userID) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -316,25 +355,93 @@ public class DBConnection {
 
     }
 
+    /** get matched user name
+     *
+     * @param chatppl
+     * @return matched user name
+     */
+    public static String getMatchedName(Integer chatppl){
+        Connection connection = null;
+        PreparedStatement preparedStatement =null;
+        ResultSet resultset = null;
+        try{
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
+            preparedStatement = connection.prepareStatement("SELECT username FROM javaFx.user where userID = ? ");
+            preparedStatement.setInt(1,chatppl);
+            resultset = preparedStatement.executeQuery();
 
-    public static void updateMatched(Integer chatppl,int userID) {
+            if(!resultset.isBeforeFirst()){
+                System.out.println("matched user not found in the database");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("no matched user found");
+                alert.show();
+                return null;
+            }else {
+                while (resultset.next()) {
+                    UserProfile userProfile = new UserProfile();
+                    userProfile.userName = resultset.getString("username");
+
+                    return userProfile.userName;
+                }
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if(resultset != null){
+                try{
+                    resultset.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(preparedStatement != null){
+                try{
+                    preparedStatement.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+
+    }
+
+    /**update matching status
+     *
+     * @param chatppl
+     * @param userID
+     * @param matchedUser
+     */
+
+    public static void updateMatched(Integer chatppl,int userID, String matchedUser) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultset = null;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
             preparedStatement = connection.prepareStatement("UPDATE user SET chatppl=?  WHERE userID=?;");
             preparedStatement.setInt(1, chatppl);
             preparedStatement.setInt(2, userID);
+
             int count = preparedStatement.executeUpdate();
             if (count <= 0 ) {
-                System.out.println("no matched user in database");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("no matched user");
+                System.out.println("No matched user in database");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("No matched user. New User stay tuned!");
                 alert.show();
             } else if (count > 0 ){
+                String matchName = getMatchedName(chatppl);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("You have a match! Start chatting! ");
+                alert.setContentText("You have a match with  " + matchName+ "  !    Start chatting ! ");
                 alert.show();
 
             }
@@ -368,6 +475,15 @@ public class DBConnection {
         }
 
     }
+
+    /** write text
+     *
+     * @param event
+     * @param userID
+     * @param receiverID
+     * @param text
+     * @return true or false
+     */
         public static boolean writeText(ActionEvent event, int userID, int receiverID, String text){
             Connection connection = null;
             PreparedStatement preparedStatement = null;
@@ -418,7 +534,14 @@ public class DBConnection {
             return false;
         }
 
-
+    /** choose friend
+     *
+     * @param event
+     * @param senterID
+     * @param receiverID
+     * @param choose
+     * @return true or false
+     */
      public static boolean chooseFriend(ActionEvent event, int senterID, int receiverID,boolean choose){
          Connection connection = null;
          PreparedStatement preparedStatement = null;
@@ -469,6 +592,12 @@ public class DBConnection {
          return false;
      }
 
+    /** get chat content
+     *
+     * @param userID
+     * @param receiverID
+     * @return
+     */
      public static ArrayList<String> getChatContent( int userID, int receiverID){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -539,6 +668,7 @@ public class DBConnection {
             Connection connection = null;
             PreparedStatement preparedStatement =null;
             ResultSet resultset = null;
+            String matchUser;
             try{
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFx", "root", "karen87930");
                 preparedStatement = connection.prepareStatement("SELECT chatppl from user where userID = ?");
@@ -586,6 +716,12 @@ public class DBConnection {
             return -1;
 
         }
+
+    /** get not matched user
+     *
+      * @param userID
+     * @return the list of not matched user
+     */
     public static ArrayList<UserProfile> getNotMatchedUser(int userID) {
         Connection connection = null;
         PreparedStatement preparedStatement =null;
